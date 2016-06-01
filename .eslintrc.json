@@ -1,0 +1,19 @@
+{
+  "extends": "airbnb",
+  "settings": {
+    "import/resolver": "webpack"
+  },
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "ecmaFeatures": {
+    "jsx": true
+  },
+  "rules": {
+    "comma-dangle": [0, "never"],
+    "no-unused-vars": [0, {"vars": "local", "args": "none"}],
+    "react/prop-types": 1 // making a warning for now as it affects stateless functional components
+  }
+}

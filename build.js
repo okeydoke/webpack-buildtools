@@ -1,24 +1,31 @@
-/* eslint no-var: 0 */
-var exec = require('child_process').exec;
+/* eslint strict: 0 */
+'use strict';
 
-var cmdLine = './node_modules/.bin/webpack --progress';
-var environ = (!process.argv[2].indexOf('development')) ? 'development' : 'production';
-var command;
+const path = require('path');
+const exec = require('child_process').exec;
+const defaultConfigPath = path.resolve(__dirname, './make-webpack.config.js');
 
-if (process.platform === 'win32') {
-  cmdLine = 'set NODE_ENV=' + environ + '&& ' + cmdLine;
-} else {
-  cmdLine = 'NODE_ENV=' + environ + ' ' + cmdLine;
-}
+module.exports = function webpackBuild(configPath = defaultConfigPath) {
+  const webpackPath = path.resolve(__dirname, './node_modules/.bin');
+  const environ = (! process.argv.indexOf('--development')) ? 'development' : 'production';
+  let cmdLine = `${webpackPath}/webpack --progress --config ${configPath}`;
 
-command = exec(cmdLine);
+  if (process.platform === 'win32') {
+    cmdLine = `set NODE_ENV=${environ} && ${cmdLine}`;
+  } else {
+    cmdLine = `NODE_ENV=${environ} ${cmdLine}`;
+  }
 
-command.stdout.on('data', function(data) {
-  process.stdout.write(data);
-});
-command.stderr.on('data', function(data) {
-  process.stderr.write(data);
-});
-command.on('error', function(err) {
-  process.stderr.write(err);
-});
+  const command = exec(cmdLine);
+
+  command.stdout.on('data', (data) => {
+    process.stdout.write(data);
+  });
+  command.stderr.on('data', (data) => {
+    process.stderr.write(data);
+  });
+  command.on('error', (err) => {
+    process.stderr.write(err);
+  });
+};
+

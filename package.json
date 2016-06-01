@@ -3,21 +3,32 @@
   "version": "1.0.0",
   "private": false,
   "description": "Webpack 2 buildtools",
+  "author": {
+    "name": "Jesse Lamb",
+    "email": "jesse@okeydoke.net"
+  },
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "",
-    "build": "node build.js production"
+    "start": ""
   },
   "license": "ISC",
   "devDependencies": {
+    "autoprefixer-core": "^6.0.1",
     "babel-core": "^6.9.1",
+    "babel-eslint": "^6.0.4",
     "babel-loader": "^6.2.4",
     "babel-plugin-transform-class-properties": "^6.6.0",
     "babel-plugin-transform-runtime": "^6.6.0",
     "babel-preset-es2015-native-modules": "^6.6.0",
     "babel-preset-react": "^6.5.0",
     "css-loader": "^0.23.1",
+    "eslint": "^2.11.1",
+    "eslint-config-airbnb": "^9.0.1",
+    "eslint-import-resolver-webpack": "^0.2.5",
+    "eslint-plugin-import": "^1.8.1",
+    "eslint-plugin-jsx-a11y": "^1.2.2",
+    "eslint-plugin-react": "^5.1.1",
     "file-loader": "^0.8.5",
     "style-loader": "^0.13.0",
     "webpack": "^2.1.0-beta.8",
